@@ -2,7 +2,7 @@ package jogoTabuleiro;
 
 public class Piece {
 
-	protected Position pos;
+	protected Position posição;
 	private Board tab;
 
 	public Piece(Board tabu) {
@@ -15,7 +15,7 @@ public class Piece {
 
 	@Override
 	public String toString() {
-		return "Piece [pos=" + pos + ", tab=" + tab + "]";
+		return "Piece [pos=" + posição + ", tab=" + tab + "]";
 	}
 
 }
