@@ -4,12 +4,12 @@ public class Board {
 
 	private int linhas;
 	private int colunas;
-	private Piece[][] peças;
+	private Piece[][] pecas;
 
 	public Board(int linhas, int colunas) {
 		this.linhas = linhas;
 		this.colunas = colunas;
-		peças = new Piece[linhas][colunas];
+		pecas = new Piece[linhas][colunas];
 	}
 
 	public int getLinhas() {
@@ -20,23 +20,22 @@ public class Board {
 		return colunas;
 	}
 
-	public Piece peca(int linha, int coluna) {
+	public Piece getPeca(int linha, int coluna) {
 		if (!posicaoExiste(linha, coluna)) {
 			throw new BoardExeption("N existe essa posição eeeeee");
 		}
-		return peças[linha][coluna];
-
+		return pecas[linha][coluna];
 	}
 
-	public Piece peca(Position posi) {
+	public Piece getPeca(Position posi) {
 		if (!posicaoExiste(posi)) {
 			throw new BoardExeption("N existe essa posição eeeeee");
 		}
-		return peças[posi.getLinha()][posi.getColuna()];
+		return pecas[posi.getLinha()][posi.getColuna()];
 	}
 
 	public Piece[][] getPecas() {
-		return peças;
+		return pecas;
 	}
 
 	public void colocarPeca(Piece peç, Position posi) {
@@ -44,7 +43,7 @@ public class Board {
 			throw new BoardExeption("Já existe uma peça mo local" + posi);
 		} else {
 
-			peças[posi.getLinha()][posi.getColuna()] = peç;
+			pecas[posi.getLinha()][posi.getColuna()] = peç;
 			peç.posição = posi;
 		}
 	}
@@ -61,11 +60,26 @@ public class Board {
 		if (!posicaoExiste(posi)) {
 			throw new BoardExeption("N existe essa posição eeeeee");
 		}
-		return peca(posi.getLinha(), posi.getColuna()) != null;
+		return getPeca(posi.getLinha(), posi.getColuna()) != null;
 	}
 
 	public Piece qualPeca(Position posi) {
-		return peca(posi.getLinha(), posi.getColuna());
+		return getPeca(posi.getLinha(), posi.getColuna());
 	}
+	
+	public Piece removerPeca(Position posi) {
+		if(!posicaoExiste(posi)) {
+			throw new BoardExeption(" Não fode meu bom, n existe essa posição");
+		}
+		if(getPeca(posi) == null) {
+			return null;
+		}
+		
+		Piece pec = getPeca(posi);
+		pec.posição = null;
+		pecas[posi.getLinha()][posi.getColuna()] = null;
+		return pec;
+	}
+	
 
 }
