@@ -38,6 +38,7 @@ public class ChessMatch {
 		Position inicio = posiIni.toPosition();
 		Position fim = posiFin.toPosition();
 		testarPosiIni(inicio);
+		testarPosiFin(inicio, fim);
 		Piece pecaCapt = fazerMovimento(inicio, fim);
 		return (ChessPiece)pecaCapt;
 	}
@@ -46,25 +47,27 @@ public class ChessMatch {
 		if(!tab.pecaExiste(posi)) {
 			throw new ChessException("Vai se fuder");
 		}
+		if(!tab.getPeca(posi).existePossibilidade()) {
+			throw new ChessException("Vai se fuder x2");
+		}
 	}
 	
-	private Piece fazerMovimento(Position posiIni, Position posiFin) {
-		Piece p = tab.removerPeca(posiIni);
-		Piece pecaCapt = tab.removerPeca(posiFin);
-		tab.colocarPeca(p, posiFin);
-		return pecaCapt;
+	private void testarPosiFin(Position ini, Position fin) {
+		if(!tab.getPeca(ini).movimentoPossivel(fin)) {
+			throw new ChessException("A sei la vei são 5 da manhã porra");
+		}
 	}
 	
-	private void colocarNovaPeca(char coluna, int linha, ChessPiece piece) {
-		tab.colocarPeca(piece, new ChessPosition(linha, coluna).toPosition());
+	private Piece fazerMovimento(Position source, Position target) {
+		Piece p = tab.removerPeca(source);
+		Piece capturedPiece = tab.removerPeca(target);
+		tab.colocarPeca(p, target);
+		return capturedPiece;
 	}
 	
-	/*
-	private Piece detectarPeca(char coluna, int linha) {
-		
-		return tab.getPeca(new ChessPosition(linha, coluna).toPosition();
+	private void colocarNovaPeca(char colunas, int linhas, ChessPiece piece) {
+		tab.colocarPeca(piece, new ChessPosition(linhas, colunas).toPosition());
 	}
-	*/
 	
 	private void inicioPartida() {
 		colocarNovaPeca('a', 8, new Torre(tab, Color.PRETO));
@@ -75,11 +78,11 @@ public class ChessMatch {
 		colocarNovaPeca('f', 8, new Bispo(tab, Color.PRETO));
 		colocarNovaPeca('g', 8, new Cavalo(tab, Color.PRETO));
 		colocarNovaPeca('h', 8, new Torre(tab, Color.PRETO));
-		
+		/*
 		for(int i = 0; i<8; i++) {
 			tab.colocarPeca(new Peao(tab, Color.PRETO), new Position(1, i));
 			}
-		
+		*/
 		
 		colocarNovaPeca('a', 1, new Torre(tab, Color.BRANCO));
 		colocarNovaPeca('b', 1, new Cavalo(tab, Color.BRANCO));
@@ -90,9 +93,11 @@ public class ChessMatch {
 		colocarNovaPeca('g', 1, new Cavalo(tab, Color.BRANCO));
 		colocarNovaPeca('h', 1, new Torre(tab, Color.BRANCO));
 		
+		/*
 		for(int i = 0; i<8; i++) {
 		tab.colocarPeca(new Peao(tab, Color.BRANCO), new Position(6, i));
 		}
+		*/
 	}
 
 }

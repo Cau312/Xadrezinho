@@ -30,6 +30,11 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}	
+	
 	public static ChessPosition lerPosicao(Scanner sc) {
 		try {
 		String p = sc.nextLine();
@@ -46,7 +51,6 @@ public class UI {
 	public static void printBoard(ChessPiece[][] pecas) {
 
 		System.out.println("  ");
-		System.out.println("  ");
 
 		for (int l = 0; l < pecas.length; l++) {
 
@@ -61,6 +65,8 @@ public class UI {
 
 		System.out.println("");
 		System.out.print("             A B C D E F G H");
+		
+		
 	}
 
 	private static void printPeca(ChessPiece peca) {

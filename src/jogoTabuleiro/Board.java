@@ -49,7 +49,7 @@ public class Board {
 	}
 
 	public boolean posicaoExiste(int l, int c) {
-		return (l >= 0 && l < linhas && c >= 0 && c < colunas);
+		return l >= 0 && l < linhas && c >= 0 && c < colunas;
 	}
 
 	public boolean posicaoExiste(Position posi) {
@@ -60,26 +60,25 @@ public class Board {
 		if (!posicaoExiste(posi)) {
 			throw new BoardExeption("N existe essa posição eeeeee");
 		}
-		return getPeca(posi.getLinha(), posi.getColuna()) != null;
+		return getPeca(posi) != null;
 	}
 
 	public Piece qualPeca(Position posi) {
 		return getPeca(posi.getLinha(), posi.getColuna());
 	}
-	
+
 	public Piece removerPeca(Position posi) {
-		if(!posicaoExiste(posi)) {
+		if (!posicaoExiste(posi)) {
 			throw new BoardExeption(" Não fode meu bom, n existe essa posição");
 		}
-		if(getPeca(posi) == null) {
+		if (getPeca(posi) == null) {
 			return null;
 		}
-		
+
 		Piece pec = getPeca(posi);
 		pec.posição = null;
 		pecas[posi.getLinha()][posi.getColuna()] = null;
 		return pec;
 	}
-	
 
 }

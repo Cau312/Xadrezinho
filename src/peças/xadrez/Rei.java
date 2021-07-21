@@ -15,5 +15,10 @@ public class Rei extends ChessPiece{
 	public String toString(){
 		return "R";
 	}
-	
+
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+		return monke;
+	}
 }

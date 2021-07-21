@@ -25,7 +25,17 @@ public class Position {
 	public void setColuna(int coluna) {
 		this.coluna = coluna;
 	}
+	
+	public void setPosi(Position posi) {
+		this.linha = posi.getLinha();
+		this.coluna = posi.getColuna();
+	}
 
+	public void setPosi(int l, int c) {
+		this.linha = l;
+		this.coluna = c;
+	}
+	
 	@Override
 	public String toString() {
 		return "linha: " + linha + " | " + "Coluna: " + coluna;

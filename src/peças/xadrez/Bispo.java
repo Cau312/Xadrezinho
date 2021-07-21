@@ -15,5 +15,11 @@ public class Bispo extends ChessPiece{
 	public String toString(){
 		return "B";
 	}
+
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+		return monke;
+	}
 	
 }

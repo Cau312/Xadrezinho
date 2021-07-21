@@ -15,5 +15,10 @@ public class Rainha extends ChessPiece{
 	public String toString(){
 		return "Q";
 	}
-	
+
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+		return monke;
+	}
 }

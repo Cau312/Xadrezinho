@@ -2,8 +2,9 @@ package xadrez;
 
 import jogoTabuleiro.Board;
 import jogoTabuleiro.Piece;
+import jogoTabuleiro.Position;
 
-public class ChessPiece extends Piece{
+public abstract class ChessPiece extends Piece{
 
 	private Color cor;
 
@@ -14,6 +15,11 @@ public class ChessPiece extends Piece{
 
 	public Color getCor() {
 		return cor;
+	}
+	
+	protected boolean temPecaInimiga(Position posi) {
+		ChessPiece p = (ChessPiece)getBoard().getPeca(posi);
+		return p != null && p.getCor() != cor;
 	}
 	
 }

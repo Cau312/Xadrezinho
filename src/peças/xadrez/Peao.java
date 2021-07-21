@@ -15,5 +15,10 @@ public class Peao extends ChessPiece{
 	public String toString(){
 		return "P";
 	}
-	
+
+	@Override
+	public boolean[][] movimentosPossiveis() {
+		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+		return monke;
+	}
 }
