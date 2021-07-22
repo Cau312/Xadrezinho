@@ -33,9 +33,15 @@ public class Main {
 			System.out.println("Source:");
 			ChessPosition source = UI.lerPosicao(sc);
 			
+			boolean[][] possibilidadesMov = Partida.movimentosPossi(source);
+			UI.clearScreen();
+			UI.printBoard(Partida.getPeças(), possibilidadesMov);
+			
+			
 			System.out.println();
 			System.out.println("target:");
 			ChessPosition target = UI.lerPosicao(sc);
+			
 			
 			ChessPiece pecaCapturada = Partida.moverPecaXadrez(source, target);
 			
@@ -52,6 +58,7 @@ public class Main {
 					System.out.println(ANSI_BLACK + "          [" + pecaCapturada + "]" + ANSI_RESET);
 						}
 			}
+			
 		}
 		}catch(ChessException m){
 			System.out.println(m.getMessage());

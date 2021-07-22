@@ -69,6 +69,12 @@ public class ChessMatch {
 		tab.colocarPeca(piece, new ChessPosition(linhas, colunas).toPosition());
 	}
 	
+	public boolean[][] movimentosPossi(ChessPosition suz){
+		Position p = suz.toPosition();
+		testarPosiIni(p);
+		return tab.getPeca(p).movimentosPossiveis();
+	}
+	
 	private void inicioPartida() {
 		colocarNovaPeca('a', 8, new Torre(tab, Color.PRETO));
 		colocarNovaPeca('b', 8, new Cavalo(tab, Color.PRETO));
