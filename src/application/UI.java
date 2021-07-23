@@ -54,7 +54,7 @@ public class UI {
 
 		for (int l = 0; l < pecas.length; l++) {
 
-			System.out.print("          " + (8 - l) + "  ");
+			System.out.print((8 - l) + "  ");
 
 			for (int c = 0; c < pecas.length; c++) {
 				printPeca(pecas[l][c], false);
@@ -64,7 +64,7 @@ public class UI {
 		}
 
 		System.out.println("");
-		System.out.print("             A B C D E F G H");
+		System.out.print("   A B C D E F G H");
 		
 		
 	}
@@ -75,7 +75,7 @@ public class UI {
 
 		for (int l = 0; l < pecas.length; l++) {
 
-			System.out.print("          " + (8 - l) + "  ");
+			System.out.print((8 - l) + "  ");
 
 			for (int c = 0; c < pecas.length; c++) {
 				printPeca(pecas[l][c], mP[l][c]);
@@ -85,25 +85,24 @@ public class UI {
 		}
 
 		System.out.println("");
-		System.out.print("             A B C D E F G H");
+		System.out.print("   A B C D E F G H");
 		
 		
 	}
 	
 	private static void printPeca(ChessPiece peca, boolean back) {
 		if(back == true) {
-			System.out.print(ANSI_GREEN_BACKGROUND + " ");
+			System.out.print(ANSI_CYAN_BACKGROUND);
 		}
 		if (peca == null) {
-			System.out.print("." + ANSI_RESET);
-			System.out.print(" " + ANSI_RESET);
+			System.out.print("." + ANSI_RESET + " ");
 		} else {
 			
 			if(peca.getCor() == Color.BRANCO){
-				System.out.print(ANSI_WHITE + peca + " " + ANSI_RESET);
+				System.out.print(ANSI_WHITE + peca + ANSI_RESET + " ");
 			}else {
 				if(peca.getCor() == Color.PRETO){
-					System.out.print(ANSI_BLACK + peca + " " + ANSI_RESET );
+					System.out.print(ANSI_BLACK + peca + ANSI_RESET + " ");
 			}else {
 				System.out.print("Como tu bugou a cor da peça amigo ?");
 			}

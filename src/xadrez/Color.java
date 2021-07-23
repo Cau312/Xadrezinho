@@ -1,5 +1,5 @@
 package xadrez;
 
 public enum Color {
-	PRETO, BRANCO;
+	PRETO, BRANCO, BUG;
 }
