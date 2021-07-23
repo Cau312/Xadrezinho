@@ -5,7 +5,6 @@ import jogoTabuleiro.Piece;
 import jogoTabuleiro.Position;
 import peças.xadrez.Bispo;
 import peças.xadrez.Cavalo;
-import peças.xadrez.Peao;
 import peças.xadrez.Rainha;
 import peças.xadrez.Rei;
 import peças.xadrez.Torre;
