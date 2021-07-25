@@ -28,13 +28,12 @@ public class ChessPosition {
 	}
 
 	protected static ChessPosition toChessPosition(Position posi) {
-		return new ChessPosition((8 - posi.getLinha()), (char)('a' - posi.getColuna()));
+		return new ChessPosition((8 - posi.getLinha()), (char) ('a' - posi.getColuna()));
 	}
 
 	@Override
 	public String toString() {
 		return "" + colunas + linhas;
 	}
-	
 
 }

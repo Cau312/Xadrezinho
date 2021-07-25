@@ -23,8 +23,12 @@ public class Torre extends ChessPiece {
 		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
 
 		Position p = new Position(0, 0);
+<<<<<<< Updated upstream
 		
 		
+=======
+
+>>>>>>> Stashed changes
 		p.setPosi(posição.getLinha() - 1, posição.getColuna());
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
 			monke[p.getLinha()][p.getColuna()] = true;

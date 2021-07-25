@@ -19,7 +19,11 @@ public class Bispo extends ChessPiece {
 
 	@Override
 	public boolean[][] movimentosPossiveis() {
+<<<<<<< Updated upstream
 		// cima
+=======
+
+>>>>>>> Stashed changes
 		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
 
 		Position p = new Position(0, 0);
@@ -35,7 +39,10 @@ public class Bispo extends ChessPiece {
 			monke[p.getLinha()][p.getColuna()] = true;
 		}
 
+<<<<<<< Updated upstream
 		// esquerda
+=======
+>>>>>>> Stashed changes
 		p.setPosi(posição.getLinha() + 1, posição.getColuna() + 1);
 
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
@@ -43,11 +50,18 @@ public class Bispo extends ChessPiece {
 			p.setLinha(p.getLinha() + 1);
 			p.setColuna(p.getColuna() + 1);
 		}
+<<<<<<< Updated upstream
 		if((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 	}
 
 		// direita
+=======
+		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+
+>>>>>>> Stashed changes
 		p.setPosi(posição.getLinha() - 1, posição.getColuna() + 1);
 
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
@@ -55,11 +69,18 @@ public class Bispo extends ChessPiece {
 			p.setLinha(p.getLinha() - 1);
 			p.setColuna(p.getColuna() + 1);
 		}
+<<<<<<< Updated upstream
 		if((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 	}
 
 		// baixo
+=======
+		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+
+>>>>>>> Stashed changes
 		p.setPosi(posição.getLinha() + 1, posição.getColuna() - 1);
 
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
@@ -67,9 +88,15 @@ public class Bispo extends ChessPiece {
 			p.setLinha(p.getLinha() + 1);
 			p.setColuna(p.getColuna() - 1);
 		}
+<<<<<<< Updated upstream
 		if((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 	}
+=======
+		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+>>>>>>> Stashed changes
 		return monke;
 	}
 

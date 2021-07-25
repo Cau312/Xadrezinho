@@ -8,5 +8,5 @@ public class ChessException extends BoardExeption {
 	public ChessException(String msg) {
 		super(msg);
 	}
-	
+
 }
