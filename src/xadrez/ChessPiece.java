@@ -22,4 +22,19 @@ public abstract class ChessPiece extends Piece{
 		return p != null && p.getCor() != cor;
 	}
 	
+	protected boolean mesmaCor(Position posi) {
+		ChessPiece p = (ChessPiece)getBoard().getPeca(posi);
+		return p != null && p.getCor() == cor;
+	}
+	
+	protected boolean pecaPreta(Position posi) {
+		ChessPiece p = (ChessPiece)getBoard().getPeca(posi);
+		return p != null && p.getCor() == Color.PRETO;
+	}
+	
+	protected boolean pecaBranca(Position posi) {
+		ChessPiece p = (ChessPiece)getBoard().getPeca(posi);
+		return p != null && p.getCor() == Color.BRANCO;
+	}
+	
 }

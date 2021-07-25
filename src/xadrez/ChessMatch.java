@@ -12,13 +12,29 @@ import peças.xadrez.Torre;
 
 public class ChessMatch {
 
+	private int turn;
+	private Color jogadorAtual;
 	private Board tab;
-
+	
 	public ChessMatch() {
 		tab = new Board(8, 8);
+		turn = 1;
+		jogadorAtual = Color.BRANCO;
 		inicioPartida();
 	}
 
+	public int getTurn(){
+		return turn;
+	}
+	
+	public Color getJogador() {
+		return jogadorAtual;
+	}
+	
+	public void proximoTurno() {
+		turn++;
+		jogadorAtual = (jogadorAtual == Color.BRANCO) ? Color.PRETO : Color.BRANCO;
+	}
 	
 	public ChessPiece[][] getPeças() {
 
@@ -40,15 +56,19 @@ public class ChessMatch {
 		testarPosiIni(inicio);
 		testarPosiFin(inicio, fim);
 		Piece pecaCapt = fazerMovimento(inicio, fim);
+		proximoTurno();
 		return (ChessPiece)pecaCapt;
 	}
 	
 	private void testarPosiIni(Position posi){
 		if(!tab.pecaExiste(posi)) {
-			throw new ChessException("Vai se fuder");
+			throw new ChessException("Essa Peça Não Existe :(");
+		}
+		if(jogadorAtual != ((ChessPiece)tab.getPeca(posi)).getCor()) {
+			throw new ChessException("Essa peça não é sua seu retardado");
 		}
 		if(!tab.getPeca(posi).existePossibilidade()) {
-			throw new ChessException("Vai se fuder x2");
+			throw new ChessException("Não Existem Movimentos Possiveis :(");
 		}
 	}
 	
@@ -62,7 +82,8 @@ public class ChessMatch {
 		Piece p = tab.removerPeca(source);
 		Piece capturedPiece = tab.removerPeca(target);
 		tab.colocarPeca(p, target);
-		return capturedPiece;
+		
+		return capturedPiece;		
 	}
 	
 	private void colocarNovaPeca(char colunas, int linhas, ChessPiece piece) {
@@ -84,11 +105,26 @@ public class ChessMatch {
 		colocarNovaPeca('f', 8, new Bispo(tab, Color.PRETO));
 		colocarNovaPeca('g', 8, new Cavalo(tab, Color.PRETO));
 		colocarNovaPeca('h', 8, new Torre(tab, Color.PRETO));
-		/*
-		for(int i = 0; i<8; i++) {
-			tab.colocarPeca(new Peao(tab, Color.PRETO), new Position(1, i));
-			}
-		*/
+		
+		colocarNovaPeca('a', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('b', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('c', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('d', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('e', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('f', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('g', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('h', 7, new Peao(tab, Color.PRETO));
+		
+		
+		
+		colocarNovaPeca('a', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('b', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('c', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('d', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('e', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('f', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('g', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('h', 2, new Peao(tab, Color.BRANCO));
 		
 		colocarNovaPeca('a', 1, new Torre(tab, Color.BRANCO));
 		colocarNovaPeca('b', 1, new Cavalo(tab, Color.BRANCO));
@@ -98,12 +134,6 @@ public class ChessMatch {
 		colocarNovaPeca('f', 1, new Bispo(tab, Color.BRANCO));
 		colocarNovaPeca('g', 1, new Cavalo(tab, Color.BRANCO));
 		colocarNovaPeca('h', 1, new Torre(tab, Color.BRANCO));
-		
-		/*
-		for(int i = 0; i<8; i++) {
-		tab.colocarPeca(new Peao(tab, Color.BRANCO), new Position(6, i));
-		}
-		*/
 	}
 
 }

@@ -27,7 +27,7 @@ public class Main {
 			
 			UI.clearScreen();
 			
-			UI.printBoard(Partida.getPeças());
+			UI.printMatch(Partida);
 			System.out.println();
 			System.out.println();
 			System.out.println("Source:");

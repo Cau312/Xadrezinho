@@ -1,6 +1,7 @@
 package peças.xadrez;
 
 import jogoTabuleiro.Board;
+import jogoTabuleiro.Position;
 import xadrez.ChessPiece;
 import xadrez.Color;
 
@@ -16,9 +17,33 @@ public class Peao extends ChessPiece{
 		return "P";
 	}
 
+	
 	@Override
 	public boolean[][] movimentosPossiveis() {
+		
 		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+
+		Position p = new Position(0, 0);
+		
+		// cima
+		if(getCor() == Color.BRANCO) {
+			
+		p.setPosi(posição.getLinha() - 1, posição.getColuna());
+		
+		if ((getBoard().posicaoExiste(p) && temPecaInimiga(p)) || (getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+		}
+
+		// baixo
+		if(getCor() == Color.PRETO) {
+			
+		p.setPosi(posição.getLinha() + 1, posição.getColuna());
+		
+		if ((getBoard().posicaoExiste(p) && temPecaInimiga(p)) || (getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+		}
 		return monke;
 	}
 }
