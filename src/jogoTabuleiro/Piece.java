@@ -19,20 +19,20 @@ public abstract class Piece {
 	}
 
 	public abstract boolean[][] movimentosPossiveis();
-	
+
 	public boolean movimentoPossivel(Position posi) {
 		return movimentosPossiveis()[posi.getLinha()][posi.getColuna()];
 	}
-	
+
 	public void imprimirPossi() {
 		System.out.println(movimentosPossiveis());
 	}
-	
+
 	public boolean existePossibilidade() {
 		boolean[][] monke = movimentosPossiveis();
-		for(int i = 0; i<monke.length ; i++) {
-			for(int x = 0; x<monke.length ; x++) {
-				if(monke[i][x] == true) {
+		for (int i = 0; i < monke.length; i++) {
+			for (int x = 0; x < monke.length; x++) {
+				if (monke[i][x] == true) {
 					return true;
 				}
 			}
