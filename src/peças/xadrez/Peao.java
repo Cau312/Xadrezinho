@@ -19,10 +19,55 @@ public class Peao extends ChessPiece {
 
 	@Override
 	public boolean[][] movimentosPossiveis() {
+<<<<<<< HEAD
 
 		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
 
 		Position p = new Position(0, 0);
+=======
+<<<<<<< Updated upstream
+		// cima
+		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+
+		Position p = new Position(0, 0);
+		
+		
+		
+		p.setPosi(posição.getLinha() - 1, posição.getColuna());
+		
+		if ((getBoard().posicaoExiste(p) && temPecaInimiga(p)) || (getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+
+
+		// esquerda
+		p.setPosi(posição.getLinha(), posição.getColuna() - 1);
+			
+		if ((getBoard().posicaoExiste(p) && temPecaInimiga(p)) || (getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+
+		// direita
+		p.setPosi(posição.getLinha(), posição.getColuna() + 1);
+		
+		if ((getBoard().posicaoExiste(p) && temPecaInimiga(p)) || (getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+
+		// baixo
+		p.setPosi(posição.getLinha() + 1, posição.getColuna());
+			
+		if ((getBoard().posicaoExiste(p) && temPecaInimiga(p)) || (getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
+			monke[p.getLinha()][p.getColuna()] = true;
+		}
+		
+		
+=======
+
+		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
+
+		Position p = new Position(0, 0);
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 		// cima
 		if (getCor() == Color.BRANCO) {
@@ -84,6 +129,10 @@ public class Peao extends ChessPiece {
 			}
 
 		}
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 		return monke;
 	}

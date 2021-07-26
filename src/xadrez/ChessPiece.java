@@ -17,15 +17,19 @@ public abstract class ChessPiece extends Piece {
 		return cor;
 	}
 
+<<<<<<< HEAD
 	public ChessPosition getChessPosition() {
 		
 		return ChessPosition.fromPosition(posição);
 	}
 	
+=======
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 	protected boolean temPecaInimiga(Position posi) {
 		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
 		return p != null && p.getCor() != cor;
 	}
+<<<<<<< HEAD
 
 	protected boolean mesmaCor(Position posi) {
 		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
@@ -43,4 +47,31 @@ public abstract class ChessPiece extends Piece {
 	}
 	
 
+=======
+<<<<<<< Updated upstream
+	
+	protected boolean mesmaCor(Position posi) {
+		ChessPiece p = (ChessPiece)getBoard().getPeca(posi);
+		return p != null && p.getCor() == cor;
+	}
+	
+=======
+
+	protected boolean mesmaCor(Position posi) {
+		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
+		return p != null && p.getCor() == cor;
+	}
+
+	protected boolean pecaPreta(Position posi) {
+		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
+		return p != null && p.getCor() == Color.PRETO;
+	}
+
+	protected boolean pecaBranca(Position posi) {
+		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
+		return p != null && p.getCor() == Color.BRANCO;
+	}
+
+>>>>>>> Stashed changes
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 }

@@ -57,7 +57,11 @@ public class UI {
 
 		for (int l = 0; l < pecas.length; l++) {
 
+<<<<<<< HEAD
 			System.out.print(ANSI_GREEN + (8 - l) + "  " + ANSI_RESET);
+=======
+			System.out.print((8 - l) + "  ");
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 			for (int c = 0; c < pecas.length; c++) {
 				printPeca(pecas[l][c], false);
@@ -67,8 +71,18 @@ public class UI {
 		}
 
 		System.out.println("");
+<<<<<<< HEAD
 		System.out.print(ANSI_GREEN + "   A B C D E F G H" + ANSI_RESET);
 
+=======
+		System.out.print("   A B C D E F G H");
+<<<<<<< Updated upstream
+		
+		
+=======
+
+>>>>>>> Stashed changes
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 	}
 
 	public static void printBoard(ChessPiece[][] pecas, boolean[][] mP) {
@@ -78,7 +92,11 @@ public class UI {
 
 		for (int l = 0; l < pecas.length; l++) {
 
+<<<<<<< HEAD
 			System.out.print(ANSI_GREEN + (8 - l) + "  " + ANSI_RESET);
+=======
+			System.out.print((8 - l) + "  ");
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 			for (int c = 0; c < pecas.length; c++) {
 				printPeca(pecas[l][c], mP[l][c]);
@@ -88,7 +106,16 @@ public class UI {
 		}
 
 		System.out.println("");
+<<<<<<< HEAD
 		System.out.print(ANSI_GREEN + "   A B C D E F G H" + ANSI_RESET);
+=======
+		System.out.print("   A B C D E F G H");
+<<<<<<< Updated upstream
+		
+		
+=======
+>>>>>>> Stashed changes
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 	}
 
 	public static void printMatch(ChessMatch partida, List<ChessPiece> mortinhos) {
@@ -102,6 +129,7 @@ public class UI {
 			System.out.println("Esperando jogador " + ANSI_WHITE + partida.getJogador() + ANSI_RESET);
 		} else {
 			if (partida.getJogador() == Color.PRETO) {
+<<<<<<< HEAD
 				System.out.println("Esperando jogador " + ANSI_YELLOW + partida.getJogador() + ANSI_RESET);
 			} else {
 				System.out.println("Eu realmente não faço ideia como alguem consegue bugar a porra de uma cor");
@@ -119,21 +147,57 @@ public class UI {
 
 	private static void printPeca(ChessPiece peca, boolean back) {
 		if (back == true) {
+=======
+				System.out.println("Esperando jogador " + ANSI_BLACK + partida.getJogador() + ANSI_RESET);
+			} else {
+				System.out.println("Eu realmente não faço ideia como alguem consegue bugar a porra de uma cor");
+			}
+		}
+	}
+
+	private static void printPeca(ChessPiece peca, boolean back) {
+<<<<<<< Updated upstream
+		if(back == true) {
+=======
+		if (back == true) {
+>>>>>>> Stashed changes
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 			System.out.print(ANSI_CYAN_BACKGROUND);
 		}
 		if (peca == null) {
 			System.out.print("." + ANSI_RESET + " ");
 		} else {
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+			
+			if(peca.getCor() == Color.BRANCO){
+				System.out.print(ANSI_WHITE + peca + ANSI_RESET + " ");
+			}else {
+				if(peca.getCor() == Color.PRETO){
+					System.out.print(ANSI_BLACK + peca + ANSI_RESET + " ");
+			}else {
+				System.out.print("Como tu bugou a cor da peça amigo ?");
+=======
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 			if (peca.getCor() == Color.BRANCO) {
 				System.out.print(ANSI_WHITE + peca + ANSI_RESET + " ");
 			} else {
 				if (peca.getCor() == Color.PRETO) {
+<<<<<<< HEAD
 					System.out.print(ANSI_YELLOW + peca + ANSI_RESET + " ");
 				} else {
 					System.out.print("Como tu bugou a cor da peça amigo ?");
 					throw new RuntimeException("UI - private static void printPeca" + ANSI_RESET);
 				}
+=======
+					System.out.print(ANSI_BLACK + peca + ANSI_RESET + " ");
+				} else {
+					System.out.print("Como tu bugou a cor da peça amigo ?");
+				}
+>>>>>>> Stashed changes
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 			}
 		}
 	}
@@ -145,7 +209,11 @@ public class UI {
 		System.out.println("Pecinhas Mortas ;-;");
 		System.out.print(ANSI_WHITE + "Brancas: ");
 		System.out.println(Arrays.toString(brancasM.toArray()) + ANSI_RESET);
+<<<<<<< HEAD
 		System.out.print(ANSI_YELLOW + "Pretas: ");
+=======
+		System.out.print(ANSI_BLACK + "Pretas: ");
+>>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 		System.out.println(Arrays.toString(pretasM.toArray()) + ANSI_RESET);
 	}
 
