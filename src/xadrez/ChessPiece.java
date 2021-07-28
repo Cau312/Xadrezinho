@@ -7,6 +7,7 @@ import jogoTabuleiro.Position;
 public abstract class ChessPiece extends Piece {
 
 	private Color cor;
+	private int movimentosQ;
 
 	public ChessPiece(Board tabu, Color cor) {
 		super(tabu);
@@ -17,45 +18,28 @@ public abstract class ChessPiece extends Piece {
 		return cor;
 	}
 
-<<<<<<< HEAD
-	public ChessPosition getChessPosition() {
-		
-		return ChessPosition.fromPosition(posição);
+	public void aumentarMovimentosQ() {
+		movimentosQ++;
 	}
 	
-=======
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
+	public void diminuirMovimentosQ() {
+		movimentosQ--;
+	}
+	
+	public int getMovimentosQ() {
+		return movimentosQ;
+	}
+	
+	
+	public ChessPosition getChessPosition() {
+
+		return ChessPosition.fromPosition(posição);
+	}
+
 	protected boolean temPecaInimiga(Position posi) {
 		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
 		return p != null && p.getCor() != cor;
 	}
-<<<<<<< HEAD
-
-	protected boolean mesmaCor(Position posi) {
-		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
-		return p != null && p.getCor() == cor;
-	}
-
-	protected boolean pecaPreta(Position posi) {
-		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
-		return p != null && p.getCor() == Color.PRETO;
-	}
-
-	protected boolean pecaBranca(Position posi) {
-		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
-		return p != null && p.getCor() == Color.BRANCO;
-	}
-	
-
-=======
-<<<<<<< Updated upstream
-	
-	protected boolean mesmaCor(Position posi) {
-		ChessPiece p = (ChessPiece)getBoard().getPeca(posi);
-		return p != null && p.getCor() == cor;
-	}
-	
-=======
 
 	protected boolean mesmaCor(Position posi) {
 		ChessPiece p = (ChessPiece) getBoard().getPeca(posi);
@@ -72,6 +56,4 @@ public abstract class ChessPiece extends Piece {
 		return p != null && p.getCor() == Color.BRANCO;
 	}
 
->>>>>>> Stashed changes
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 }

@@ -23,16 +23,7 @@ public class Rainha extends ChessPiece {
 		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
 
 		Position p = new Position(0, 0);
-<<<<<<< HEAD
 
-=======
-<<<<<<< Updated upstream
-		
-		
-=======
-
->>>>>>> Stashed changes
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 		p.setPosi(posição.getLinha() - 1, posição.getColuna());
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
 			monke[p.getLinha()][p.getColuna()] = true;
@@ -91,21 +82,9 @@ public class Rainha extends ChessPiece {
 			p.setLinha(p.getLinha() + 1);
 			p.setColuna(p.getColuna() + 1);
 		}
-<<<<<<< HEAD
 		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 		}
-=======
-<<<<<<< Updated upstream
-		if((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
-			monke[p.getLinha()][p.getColuna()] = true;
-	}
-=======
-		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
-			monke[p.getLinha()][p.getColuna()] = true;
-		}
->>>>>>> Stashed changes
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 		// direita
 		p.setPosi(posição.getLinha() - 1, posição.getColuna() + 1);
@@ -115,21 +94,9 @@ public class Rainha extends ChessPiece {
 			p.setLinha(p.getLinha() - 1);
 			p.setColuna(p.getColuna() + 1);
 		}
-<<<<<<< HEAD
 		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 		}
-=======
-<<<<<<< Updated upstream
-		if((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
-			monke[p.getLinha()][p.getColuna()] = true;
-	}
-=======
-		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
-			monke[p.getLinha()][p.getColuna()] = true;
-		}
->>>>>>> Stashed changes
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 		// baixo
 		p.setPosi(posição.getLinha() + 1, posição.getColuna() - 1);
@@ -139,7 +106,6 @@ public class Rainha extends ChessPiece {
 			p.setLinha(p.getLinha() + 1);
 			p.setColuna(p.getColuna() - 1);
 		}
-<<<<<<< HEAD
 		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 		}
@@ -147,23 +113,4 @@ public class Rainha extends ChessPiece {
 		return monke;
 	}
 
-=======
-<<<<<<< Updated upstream
-		if((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
-			monke[p.getLinha()][p.getColuna()] = true;
-	}
-		
-		return monke;
-	}
-	
-=======
-		if ((getBoard().posicaoExiste(p) && mesmaCor(p) != true)) {
-			monke[p.getLinha()][p.getColuna()] = true;
-		}
-
-		return monke;
-	}
-
->>>>>>> Stashed changes
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 }

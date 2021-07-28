@@ -16,47 +16,29 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
 		ChessMatch partida = new ChessMatch();
-=======
-		ChessMatch Partida = new ChessMatch();
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 		List<ChessPiece> mortos = new ArrayList<>();
 
 		try {
-			while (true) {
+			while (!partida.getMariele()) {
 
 				UI.clearScreen();
 
-<<<<<<< HEAD
 				UI.printMatch(partida, mortos);
-=======
-				UI.printMatch(Partida, mortos);
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 				System.out.println(" ");
 				System.out.println("Mover peça na posição: ");
 				ChessPosition source = UI.lerPosicao(sc);
 
-<<<<<<< HEAD
 				boolean[][] possibilidadesMov = partida.movimentosPossi(source);
 				UI.clearScreen();
 				UI.printBoard(partida.getPeças(), possibilidadesMov);
-=======
-				boolean[][] possibilidadesMov = Partida.movimentosPossi(source);
-				UI.clearScreen();
-				UI.printBoard(Partida.getPeças(), possibilidadesMov);
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 				System.out.println(" ");
 				System.out.println(" ");
 				System.out.println("Colocar peça da posição " + source + " na posição: ");
 				ChessPosition target = UI.lerPosicao(sc);
 
-<<<<<<< HEAD
 				ChessPiece pecaCapturada = partida.moverPecaXadrez(source, target);
-=======
-				ChessPiece pecaCapturada = Partida.moverPecaXadrez(source, target);
->>>>>>> c97087a34e50396bc26ef76a5b031e8c6b57ab59
 
 				if (pecaCapturada != null) {
 					mortos.add(pecaCapturada);
@@ -74,6 +56,12 @@ public class Main {
 			System.out.println(n.getMessage());
 			sc.nextLine();
 		}
+		
+		UI.printMatch(partida, mortos);
+		System.out.println(" ");
+		System.out.println(" ");
+		System.out.println("A Partida acabou meu compatriota");
+		
 	}
 
 }
