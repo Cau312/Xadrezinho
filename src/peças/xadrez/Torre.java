@@ -23,9 +23,8 @@ public class Torre extends ChessPiece {
 		boolean[][] monke = new boolean[getBoard().getLinhas()][getBoard().getColunas()];
 
 		Position p = new Position(0, 0);
-		
-		
-		p.setPosi(p.getLinha() - 1, p.getColuna());
+
+		p.setPosi(posição.getLinha() - 1, posição.getColuna());
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 			p.setLinha(p.getLinha() - 1);
@@ -35,7 +34,7 @@ public class Torre extends ChessPiece {
 		}
 
 		// esquerda
-		p.setPosi(p.getLinha(), p.getColuna() - 1);
+		p.setPosi(posição.getLinha(), posição.getColuna() - 1);
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 			p.setColuna(p.getColuna() - 1);
@@ -45,7 +44,7 @@ public class Torre extends ChessPiece {
 		}
 
 		// direita
-		p.setPosi(p.getLinha(), p.getColuna() + 1);
+		p.setPosi(posição.getLinha(), posição.getColuna() + 1);
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 			p.setColuna(p.getColuna() + 1);
@@ -55,7 +54,7 @@ public class Torre extends ChessPiece {
 		}
 
 		// baixo
-		p.setPosi(p.getLinha() + 1, p.getColuna());
+		p.setPosi(posição.getLinha() + 1, posição.getColuna());
 		while (getBoard().posicaoExiste(p) && !getBoard().pecaExiste(p)) {
 			monke[p.getLinha()][p.getColuna()] = true;
 			p.setLinha(p.getLinha() + 1);

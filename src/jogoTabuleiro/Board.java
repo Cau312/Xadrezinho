@@ -2,6 +2,9 @@ package jogoTabuleiro;
 
 public class Board {
 
+	public static final String ANSI_RED = "\u001B[31m";
+	public static final String ANSI_RESET = "\u001B[0m";
+	
 	private int linhas;
 	private int colunas;
 	private Piece[][] pecas;
@@ -22,14 +25,16 @@ public class Board {
 
 	public Piece getPeca(int linha, int coluna) {
 		if (!posicaoExiste(linha, coluna)) {
-			throw new BoardExeption("N existe essa posição eeeeee");
+			System.out.println(ANSI_RED + "N existe essa posição eeeeee");
+			throw new BoardExeption("Board - public Piece getPeca" + ANSI_RESET);
 		}
 		return pecas[linha][coluna];
 	}
 
 	public Piece getPeca(Position posi) {
 		if (!posicaoExiste(posi)) {
-			throw new BoardExeption("N existe essa posição eeeeee");
+			System.out.println(ANSI_RED + "N existe essa posição eeeeee");
+			throw new BoardExeption("Board - public Piece getPeca" + ANSI_RESET);
 		}
 		return pecas[posi.getLinha()][posi.getColuna()];
 	}
@@ -40,7 +45,8 @@ public class Board {
 
 	public void colocarPeca(Piece peç, Position posi) {
 		if (pecaExiste(posi) == true) {
-			throw new BoardExeption("Já existe uma peça mo local" + posi);
+			System.out.println(ANSI_RED + "Já existe uma peça mo local" + posi);
+			throw new BoardExeption("Board - public void colocarPeca" + ANSI_RESET);
 		} else {
 
 			pecas[posi.getLinha()][posi.getColuna()] = peç;
@@ -58,7 +64,8 @@ public class Board {
 
 	public boolean pecaExiste(Position posi) {
 		if (!posicaoExiste(posi)) {
-			throw new BoardExeption("N existe essa posição eeeeee");
+			System.out.println(ANSI_RED + "N existe essa posição eeeeee");
+			throw new BoardExeption("Board - public boolean pecaExiste" + ANSI_RESET);
 		}
 		return getPeca(posi) != null;
 	}
@@ -69,7 +76,8 @@ public class Board {
 
 	public Piece removerPeca(Position posi) {
 		if (!posicaoExiste(posi)) {
-			throw new BoardExeption(" Não fode meu bom, n existe essa posição");
+			System.out.println(ANSI_RED + "");
+			throw new BoardExeption("Não fode meu bom, n existe essa posição" + ANSI_RESET);
 		}
 		if (getPeca(posi) == null) {
 			return null;
