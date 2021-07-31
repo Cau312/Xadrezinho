@@ -120,39 +120,19 @@ public class ChessMatch {
 		}
 	}
 
-	private void desfazerMovimento(Position source, Position target, Piece morto) {
-		ChessPiece p = (ChessPiece) tab.removerPeca(target);
+	private void desfazerMovimento(Position ini, Position fin, Piece morto) {
+		ChessPiece p = (ChessPiece) tab.removerPeca(fin);
 
 		p.diminuirMovimentosQ();
 
-		tab.colocarPeca(p, source);
+		tab.colocarPeca(p, ini);
 
 		if (morto != null) {
-			tab.colocarPeca(morto, target);
+			tab.colocarPeca(morto, fin);
 			pecasMortas.remove(morto);
 			pecasVivas.add(morto);
 
 		}
-		
-		if(p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
-			Position sourceT = new Position(source.getLinha(), source.getColuna() + 3);
-			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() - 2);
-			
-			ChessPiece torre = (ChessPiece)tab.removerPeca(targetT);
-			tab.colocarPeca(torre, sourceT);
-			torre.diminuirMovimentosQ();
-		}
-		
-		if(p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
-			Position sourceT = new Position(source.getLinha(), source.getColuna() - 4);
-			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() + 3);
-		
-			ChessPiece torre = (ChessPiece)tab.removerPeca(targetT);
-			tab.colocarPeca(torre, sourceT);
-			torre.diminuirMovimentosQ();
-			
-		}
-		
 	}
 
 	private Color oponente(Color cor) {
@@ -225,36 +205,10 @@ public class ChessMatch {
 		p.aumentarMovimentosQ();
 		Piece pecaCapt = tab.removerPeca(target);
 		tab.colocarPeca(p, target);
-		
 		if (pecaCapt != null) {
 			pecasVivas.remove(pecaCapt);
 			pecasMortas.add(pecaCapt);
-			
 		}
-		
-		//Area Especial Fim
-		
-		if(p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
-			Position sourceT = new Position(source.getLinha(), source.getColuna() + 3);
-			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() - 2);
-			
-			ChessPiece torre = (ChessPiece)tab.removerPeca(sourceT);
-			tab.colocarPeca(torre, targetT);
-			torre.aumentarMovimentosQ();
-		}
-		
-		if(p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
-			Position sourceT = new Position(source.getLinha(), source.getColuna() - 4);
-			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() + 3);
-		
-			ChessPiece torre = (ChessPiece)tab.removerPeca(sourceT);
-			tab.colocarPeca(torre, targetT);
-			torre.aumentarMovimentosQ();
-			
-		}
-		
-		//Area Especial Começo
-		
 		return pecaCapt;
 	}
 
@@ -275,7 +229,7 @@ public class ChessMatch {
 		colocarNovaPeca('b', 8, new Cavalo(tab, Color.PRETO));
 		colocarNovaPeca('c', 8, new Bispo(tab, Color.PRETO));
 		colocarNovaPeca('d', 8, new Rainha(tab, Color.PRETO));
-		colocarNovaPeca('e', 8, new Rei(tab, Color.PRETO, this));
+		colocarNovaPeca('e', 8, new Rei(tab, Color.PRETO));
 		colocarNovaPeca('f', 8, new Bispo(tab, Color.PRETO));
 		colocarNovaPeca('g', 8, new Cavalo(tab, Color.PRETO));
 		colocarNovaPeca('h', 8, new Torre(tab, Color.PRETO));
@@ -299,16 +253,12 @@ public class ChessMatch {
 		colocarNovaPeca('h', 2, new Peao(tab, Color.BRANCO));
 
 		colocarNovaPeca('a', 1, new Torre(tab, Color.BRANCO));
-		/*
 		colocarNovaPeca('b', 1, new Cavalo(tab, Color.BRANCO));
 		colocarNovaPeca('c', 1, new Bispo(tab, Color.BRANCO));
 		colocarNovaPeca('d', 1, new Rainha(tab, Color.BRANCO));
-		*/
-		colocarNovaPeca('e', 1, new Rei(tab, Color.BRANCO, this));
-		/*
+		colocarNovaPeca('e', 1, new Rei(tab, Color.BRANCO));
 		colocarNovaPeca('f', 1, new Bispo(tab, Color.BRANCO));
 		colocarNovaPeca('g', 1, new Cavalo(tab, Color.BRANCO));
-		*/
 		colocarNovaPeca('h', 1, new Torre(tab, Color.BRANCO));
 
 	}
