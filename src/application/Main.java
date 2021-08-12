@@ -44,24 +44,6 @@ public class Main {
 					mortos.add(pecaCapturada);
 				}
 
-				if (partida.getPromocao() != null) {
-					System.out.println(" ");
-					System.out.println("Para qual peça deseja provomer seu peão ?");
-					System.out.println(" B - Bispo");
-					System.out.println(" Q - Rainha");
-					System.out.println(" T - Torre ");
-					System.out.println(" C - Cavalo");
-					String tipo = sc.nextLine().toUpperCase();
-
-					while (!tipo.equals("Q") && !tipo.equals("B") && !tipo.equals("C") && !tipo.equals("T")) {
-						System.out.println(" ");
-						System.out.println("Digite Corretamente - B / Q / T / C");
-						tipo = sc.nextLine().toUpperCase();
-					}
-
-					partida.mudarPromocao(tipo);
-				}
-
 			}
 
 		} catch (ChessException m) {
@@ -74,12 +56,12 @@ public class Main {
 			System.out.println(n.getMessage());
 			sc.nextLine();
 		}
-
+		
 		UI.printMatch(partida, mortos);
 		System.out.println(" ");
 		System.out.println(" ");
 		System.out.println("A Partida acabou meu compatriota");
-
+		
 	}
 
 }

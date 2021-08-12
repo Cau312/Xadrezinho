@@ -1,6 +1,5 @@
 package xadrez;
 
-import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,8 +24,6 @@ public class ChessMatch {
 	private Board tab;
 	private boolean check;
 	private boolean mariele;
-	private ChessPiece vuneravelS;
-	private ChessPiece promocao;
 
 	private List<Piece> pecasVivas = new ArrayList<>();
 	private List<Piece> pecasMortas = new ArrayList<>();
@@ -36,18 +33,6 @@ public class ChessMatch {
 		turn = 1;
 		jogadorAtual = Color.BRANCO;
 		inicioPartida();
-	}
-
-	public ChessPiece getPromocao() {
-		return promocao;
-	}
-
-	public ChessPiece getVuneravelS() {
-		return vuneravelS;
-	}
-
-	public void setVuneravelS(ChessPiece vuneravelS) {
-		this.vuneravelS = vuneravelS;
 	}
 
 	public int getTurn() {
@@ -85,42 +70,6 @@ public class ChessMatch {
 		return check;
 	}
 
-	public ChessPiece mudarPromocao(String tPeca) {
-		if (promocao == null) {
-			System.out.println(ANSI_RED + "Então meu bom deu merda ai com tua promocao");
-			throw new IllegalStateException("ChessMatch - public ChessPiece mudarPromocao" + ANSI_RESET);
-		}
-		if (!tPeca.equals("Q") && !tPeca.equals("B") && !tPeca.equals("C") && !tPeca.equals("T")) {
-			return promocao;
-		}
-
-		Position pos = promocao.getChessPosition().toPosition();
-		Piece p = tab.removerPeca(pos);
-		pecasVivas.remove(p);
-
-		ChessPiece newPeca = novaPeca(tPeca, promocao.getCor());
-		tab.colocarPeca(newPeca, pos);
-		pecasVivas.add(newPeca);
-
-		return newPeca;
-
-	}
-
-	private ChessPiece novaPeca(String tipo, Color cor) {
-		if (tipo.equals("B"))
-			return new Bispo(tab, cor);
-		else if (tipo.equals("C"))
-			return new Cavalo(tab, cor);
-		else if (tipo.equals("T"))
-			return new Torre(tab, cor);
-		else if (tipo.equals("Q"))
-			return new Rainha(tab, cor);
-		else
-			System.out.println(ANSI_RED + "Então meu bom deu merda ai com tua promocao sei oq foi não");
-		throw new InvalidParameterException("ChessMatch - private ChessPiece novaPeca" + ANSI_RESET);
-
-	}
-
 	public ChessPiece moverPecaXadrez(ChessPosition posiIni, ChessPosition posiFin) {
 		Position inicio = posiIni.toPosition();
 		Position fim = posiFin.toPosition();
@@ -136,41 +85,16 @@ public class ChessMatch {
 			throw new ChessException("ChessMatch - public ChessPiece moverPecaXadrez" + ANSI_RESET);
 		}
 
-		ChessPiece pecaMovida = (ChessPiece) tab.getPeca(fim);
-
-		// ado a ado qm me leu é arrombado
-
-		promocao = null;
-		if (pecaMovida instanceof Peao) {
-			if ((pecaMovida.getCor() == Color.BRANCO && fim.getLinha() == 0)
-					|| (pecaMovida.getCor() == Color.PRETO && fim.getLinha() == 7)) {
-
-				promocao = (ChessPiece) tab.getPeca(fim);
-				promocao = mudarPromocao("Q");
-
-			}
-		}
-
-		// ido i ido qm me leu é mau parido
-
 		check = (existeCheck(oponente(jogadorAtual))) ? true : false;
 
 		if (existeCheckMate(oponente(jogadorAtual))) {
 			mariele = true;
 		} else {
-			proximoTurno();
+
+			 proximoTurno();
+
 		}
 
-		// Area Especial
-
-		if (pecaMovida instanceof Peao
-				&& (fim.getLinha() == inicio.getLinha() - 2 || fim.getLinha() == inicio.getLinha() + 2)) {
-			vuneravelS = pecaMovida;
-		} else {
-			vuneravelS = null;
-		}
-
-		// Fim Area Especial
 		return (ChessPiece) pecaCapt;
 	}
 
@@ -196,57 +120,39 @@ public class ChessMatch {
 		}
 	}
 
-	private void desfazerMovimento(Position source, Position target, Piece pecaCapt) {
-
+	private void desfazerMovimento(Position source, Position target, Piece morto) {
 		ChessPiece p = (ChessPiece) tab.removerPeca(target);
 
 		p.diminuirMovimentosQ();
 
 		tab.colocarPeca(p, source);
 
-		if (pecaCapt != null) {
-			tab.colocarPeca(pecaCapt, target);
-			pecasMortas.remove(pecaCapt);
-			pecasVivas.add(pecaCapt);
+		if (morto != null) {
+			tab.colocarPeca(morto, target);
+			pecasMortas.remove(morto);
+			pecasVivas.add(morto);
 
 		}
-
-		if (p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
+		
+		if(p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
 			Position sourceT = new Position(source.getLinha(), source.getColuna() + 3);
 			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() - 2);
-
-			ChessPiece torre = (ChessPiece) tab.removerPeca(targetT);
+			
+			ChessPiece torre = (ChessPiece)tab.removerPeca(targetT);
 			tab.colocarPeca(torre, sourceT);
 			torre.diminuirMovimentosQ();
 		}
-
-		if (p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
+		
+		if(p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
 			Position sourceT = new Position(source.getLinha(), source.getColuna() - 4);
 			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() + 3);
-
-			ChessPiece torre = (ChessPiece) tab.removerPeca(targetT);
+		
+			ChessPiece torre = (ChessPiece)tab.removerPeca(targetT);
 			tab.colocarPeca(torre, sourceT);
 			torre.diminuirMovimentosQ();
-
+			
 		}
-
-		if (p instanceof Peao) {
-			if (source.getColuna() != target.getColuna() && pecaCapt == vuneravelS) {
-				ChessPiece peao = (ChessPiece) tab.removerPeca(target);
-				Position peaoP;
-				if (p.getCor() == Color.BRANCO) {
-					peaoP = new Position(3, target.getColuna());
-				} else {
-					peaoP = new Position(4, target.getColuna());
-				}
-				tab.colocarPeca(peao, peaoP);
-
-				pecasMortas.add(pecaCapt);
-				pecasVivas.remove(pecaCapt);
-
-			}
-		}
-
+		
 	}
 
 	private Color oponente(Color cor) {
@@ -315,60 +221,40 @@ public class ChessMatch {
 	}
 
 	private Piece fazerMovimento(Position source, Position target) {
-
 		ChessPiece p = (ChessPiece) tab.removerPeca(source);
-
 		p.aumentarMovimentosQ();
-
 		Piece pecaCapt = tab.removerPeca(target);
-
 		tab.colocarPeca(p, target);
-
+		
 		if (pecaCapt != null) {
 			pecasVivas.remove(pecaCapt);
 			pecasMortas.add(pecaCapt);
-
+			
 		}
-
-		// Area Especial Fim
-
-		if (p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
+		
+		//Area Especial Fim
+		
+		if(p instanceof Rei && target.getColuna() == source.getColuna() + 2) {
 			Position sourceT = new Position(source.getLinha(), source.getColuna() + 3);
 			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() - 2);
-
-			ChessPiece torre = (ChessPiece) tab.removerPeca(sourceT);
+			
+			ChessPiece torre = (ChessPiece)tab.removerPeca(sourceT);
 			tab.colocarPeca(torre, targetT);
 			torre.aumentarMovimentosQ();
 		}
-
-		if (p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
+		
+		if(p instanceof Rei && target.getColuna() == source.getColuna() - 2) {
 			Position sourceT = new Position(source.getLinha(), source.getColuna() - 4);
 			Position targetT = new Position(sourceT.getLinha(), sourceT.getColuna() + 3);
-
-			ChessPiece torre = (ChessPiece) tab.removerPeca(sourceT);
+		
+			ChessPiece torre = (ChessPiece)tab.removerPeca(sourceT);
 			tab.colocarPeca(torre, targetT);
 			torre.aumentarMovimentosQ();
-
+			
 		}
-
-		if (p instanceof Peao) {
-			if (source.getColuna() != target.getColuna() && pecaCapt == null) {
-				Position peaoP;
-				if (p.getCor() == Color.BRANCO) {
-					peaoP = new Position(target.getLinha() + 1, target.getColuna());
-				} else {
-					peaoP = new Position(target.getLinha() - 1, target.getColuna());
-				}
-
-				pecaCapt = tab.removerPeca(peaoP);
-				pecasMortas.add(pecaCapt);
-				pecasVivas.remove(pecaCapt);
-
-			}
-		}
-
-		// Area Especial Começo
-
+		
+		//Area Especial Começo
+		
 		return pecaCapt;
 	}
 
@@ -385,7 +271,7 @@ public class ChessMatch {
 
 	private void inicioPartida() {
 
-		// colocarNovaPeca('a', 8, new Torre(tab, Color.PRETO));
+		colocarNovaPeca('a', 8, new Torre(tab, Color.PRETO));
 		colocarNovaPeca('b', 8, new Cavalo(tab, Color.PRETO));
 		colocarNovaPeca('c', 8, new Bispo(tab, Color.PRETO));
 		colocarNovaPeca('d', 8, new Rainha(tab, Color.PRETO));
@@ -394,35 +280,35 @@ public class ChessMatch {
 		colocarNovaPeca('g', 8, new Cavalo(tab, Color.PRETO));
 		colocarNovaPeca('h', 8, new Torre(tab, Color.PRETO));
 
-		colocarNovaPeca('a', 7, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('b', 7, new Peao(tab, Color.PRETO, this));
-		colocarNovaPeca('c', 7, new Peao(tab, Color.PRETO, this));
-		colocarNovaPeca('d', 7, new Peao(tab, Color.PRETO, this));
-		colocarNovaPeca('e', 7, new Peao(tab, Color.PRETO, this));
-		colocarNovaPeca('f', 7, new Peao(tab, Color.PRETO, this));
-		colocarNovaPeca('g', 7, new Peao(tab, Color.PRETO, this));
-		colocarNovaPeca('h', 7, new Peao(tab, Color.PRETO, this));
+		colocarNovaPeca('a', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('b', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('c', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('d', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('e', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('f', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('g', 7, new Peao(tab, Color.PRETO));
+		colocarNovaPeca('h', 7, new Peao(tab, Color.PRETO));
 
-		colocarNovaPeca('a', 2, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('b', 2, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('c', 2, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('d', 2, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('e', 2, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('f', 2, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('g', 2, new Peao(tab, Color.BRANCO, this));
-		colocarNovaPeca('h', 2, new Peao(tab, Color.BRANCO, this));
+		colocarNovaPeca('a', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('b', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('c', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('d', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('e', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('f', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('g', 2, new Peao(tab, Color.BRANCO));
+		colocarNovaPeca('h', 2, new Peao(tab, Color.BRANCO));
 
 		colocarNovaPeca('a', 1, new Torre(tab, Color.BRANCO));
 		/*
-		 * colocarNovaPeca('b', 1, new Cavalo(tab, Color.BRANCO)); colocarNovaPeca('c',
-		 * 1, new Bispo(tab, Color.BRANCO)); colocarNovaPeca('d', 1, new Rainha(tab,
-		 * Color.BRANCO));
-		 */
+		colocarNovaPeca('b', 1, new Cavalo(tab, Color.BRANCO));
+		colocarNovaPeca('c', 1, new Bispo(tab, Color.BRANCO));
+		colocarNovaPeca('d', 1, new Rainha(tab, Color.BRANCO));
+		*/
 		colocarNovaPeca('e', 1, new Rei(tab, Color.BRANCO, this));
 		/*
-		 * colocarNovaPeca('f', 1, new Bispo(tab, Color.BRANCO)); colocarNovaPeca('g',
-		 * 1, new Cavalo(tab, Color.BRANCO));
-		 */
+		colocarNovaPeca('f', 1, new Bispo(tab, Color.BRANCO));
+		colocarNovaPeca('g', 1, new Cavalo(tab, Color.BRANCO));
+		*/
 		colocarNovaPeca('h', 1, new Torre(tab, Color.BRANCO));
 
 	}

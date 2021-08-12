@@ -2,17 +2,14 @@ package peças.xadrez;
 
 import jogoTabuleiro.Board;
 import jogoTabuleiro.Position;
-import xadrez.ChessMatch;
 import xadrez.ChessPiece;
 import xadrez.Color;
 
 public class Peao extends ChessPiece {
 
-	private ChessMatch part;
-
-	public Peao(Board tabu, Color cor, ChessMatch parti) {
+	public Peao(Board tabu, Color cor) {
 		super(tabu, cor);
-		this.part = parti;
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -65,22 +62,6 @@ public class Peao extends ChessPiece {
 				}
 			}
 
-			if (posição.getLinha() == 3) {
-				Position esquerda = new Position(posição.getLinha(), posição.getColuna() - 1);
-				if (getBoard().posicaoExiste(esquerda) && temPecaInimiga(esquerda)
-						&& getBoard().getPeca(esquerda) == part.getVuneravelS()) {
-					monke[esquerda.getLinha() - 1][esquerda.getColuna()] = true;
-				}
-			}
-
-			if (posição.getLinha() == 3) {
-				Position direita = new Position(posição.getLinha(), posição.getColuna() + 1);
-				if (getBoard().posicaoExiste(direita) && temPecaInimiga(direita)
-						&& getBoard().getPeca(direita) == part.getVuneravelS()) {
-					monke[direita.getLinha() - 1][direita.getColuna()] = true;
-				}
-			}
-
 		}
 
 		// baixo
@@ -119,23 +100,7 @@ public class Peao extends ChessPiece {
 					monke[p.getLinha()][p.getColuna()] = true;
 				}
 			}
-            //============================================================================
-			if (posição.getLinha() == 3) {
-				Position esquerda = new Position(posição.getLinha(), posição.getColuna() - 1);
-				if (getBoard().posicaoExiste(esquerda) && temPecaInimiga(esquerda)
-						&& getBoard().getPeca(esquerda) == part.getVuneravelS()) {
-					monke[esquerda.getLinha() + 1][esquerda.getColuna()] = true;
-				}
-			}
 
-			if (posição.getLinha() == 3) {
-				Position direita = new Position(posição.getLinha(), posição.getColuna() + 1);
-				if (getBoard().posicaoExiste(direita) && temPecaInimiga(direita)
-						&& getBoard().getPeca(direita) == part.getVuneravelS()) {
-					monke[direita.getLinha() + 1][direita.getColuna()] = true;
-				}
-			}
-			// ==================================================================================
 		}
 
 		return monke;
